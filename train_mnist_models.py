@@ -85,8 +85,7 @@ def main(argv=None):
     # Train the model
     model_train(sess, x, y, predictions, X_train, Y_train, evaluate=evaluate, \
                 args=train_params, save=False)
-    model.model.save(FLAGS.train_dir + '/' + FLAGS.filename_erm)
-
+    model.save(FLAGS.train_dir + '/' + FLAGS.filename_erm)
 
     print('')
     print("Repeating the process, using Wasserstein adversarial training")
@@ -109,7 +108,7 @@ def main(argv=None):
     model_train(sess, x, y, predictions_adv_adv_wrm, X_train, Y_train, \
                 predictions_adv=predictions_adv_adv_wrm, evaluate=evaluate_adv, \
                 args=train_params, save=False)
-    model_adv.model.save(FLAGS.train_dir + '/' + FLAGS.filename_wrm)
+    model_adv.save(FLAGS.train_dir + '/' + FLAGS.filename_wrm)
 
 if __name__ == '__main__':
     app.run()
