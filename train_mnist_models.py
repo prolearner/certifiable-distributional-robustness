@@ -13,8 +13,8 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import numpy as np
-import keras
-from keras import backend
+from tensorflow import keras
+from tensorflow.keras import backend
 import tensorflow as tf
 from tensorflow.python.platform import app
 from tensorflow.python.platform import flags
@@ -23,8 +23,8 @@ from utils_mnist import data_mnist
 from utils_tf import model_train, model_eval
 from utils import cnn_model
 
-from keras.models import load_model
-from keras.backend import manual_variable_initialization
+from tensorflow.keras.models import load_model
+from tensorflow.keras.backend import manual_variable_initialization
 from attacks import WassersteinRobustMethod
 
 FLAGS = flags.FLAGS

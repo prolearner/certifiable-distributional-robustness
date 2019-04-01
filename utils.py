@@ -6,19 +6,19 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from distutils.version import LooseVersion
-import keras
-from keras.utils import np_utils
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation, Flatten, Reshape
-import keras.regularizers as regularizers
+from tensorflow import keras
+from tensorflow.keras import utils
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Reshape
+import tensorflow.keras.regularizers as regularizers
 import matplotlib.pyplot as plt
 import numpy as np
 import os
 
 if LooseVersion(keras.__version__) >= LooseVersion('2.0.0'):
-    from keras.layers import Conv2D
+    from tensorflow.keras.layers import Conv2D
 else:
-    from keras.layers import Convolution2D
+    from tensorflow.keras.layers import Convolution2D
 
 
 class _ArgsWrapper(object):
@@ -136,11 +136,11 @@ def random_targets(gt, nb_classes):
 
     result = np.zeros(gt.shape)
 
-    for class_ind in xrange(nb_classes):
+    for class_ind in range(nb_classes):
         in_cl = gt == class_ind
         result[in_cl] = np.random.choice(other_classes(nb_classes, class_ind))
 
-    return np_utils.to_categorical(np.asarray(result), nb_classes)
+    return utils.to_categorical(np.asarray(result), nb_classes)
 
 
 def conv_2d(filters, kernel_shape, strides, padding, input_shape=None):

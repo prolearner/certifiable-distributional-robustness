@@ -5,9 +5,9 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import keras
-from keras.datasets import mnist
-from keras.utils import np_utils
+from tensorflow import keras
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras import utils
 import warnings
 
 import utils
@@ -36,8 +36,8 @@ def data_mnist():
     print(X_test.shape[0], 'test samples')
 
     # convert class vectors to binary class matrices
-    Y_train = np_utils.to_categorical(y_train, nb_classes)
-    Y_test = np_utils.to_categorical(y_test, nb_classes)
+    Y_train = utils.to_categorical(y_train, nb_classes)
+    Y_test = utils.to_categorical(y_test, nb_classes)
     from sklearn.utils import shuffle
     X_train, Y_train = shuffle(X_train, Y_train)
     return X_train, Y_train, X_test, Y_test
