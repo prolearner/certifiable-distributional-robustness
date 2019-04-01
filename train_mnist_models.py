@@ -13,8 +13,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import numpy as np
-from tensorflow import keras
-from tensorflow.keras import backend
+from tensorflow.python import keras
 import tensorflow as tf
 from tensorflow.python.platform import app
 from tensorflow.python.platform import flags
@@ -23,8 +22,8 @@ from utils_mnist import data_mnist
 from utils_tf import model_train, model_eval
 from utils import cnn_model
 
-from tensorflow.keras.models import load_model
-from tensorflow.keras.backend import manual_variable_initialization
+from tensorflow.python.keras.models import load_model
+from tensorflow.python.keras.backend import manual_variable_initialization
 from attacks import WassersteinRobustMethod
 
 FLAGS = flags.FLAGS
@@ -49,7 +48,7 @@ tf.set_random_seed(seed)
 
 def main(argv=None):
 
-    keras.layers.core.K.set_learning_phase(1)
+    keras.backend.set_learning_phase(1)
     manual_variable_initialization(True)
 
     # Create TF session and set as Keras backend session

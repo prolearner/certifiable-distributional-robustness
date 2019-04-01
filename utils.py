@@ -6,19 +6,18 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from distutils.version import LooseVersion
-from tensorflow import keras
-from tensorflow.keras import utils
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Reshape
-import tensorflow.keras.regularizers as regularizers
+from tensorflow.python import keras
+from tensorflow.python.keras import utils
+from tensorflow.python.keras.models import Sequential
+from tensorflow.python.keras.layers import Dense, Dropout, Activation, Flatten, Reshape
 import matplotlib.pyplot as plt
 import numpy as np
 import os
 
 if LooseVersion(keras.__version__) >= LooseVersion('2.0.0'):
-    from tensorflow.keras.layers import Conv2D
+    from tensorflow.python.keras.layers import Conv2D
 else:
-    from tensorflow.keras.layers import Convolution2D
+    from tensorflow.python.keras.layers import Convolution2D
 
 
 class _ArgsWrapper(object):
@@ -198,7 +197,7 @@ def cnn_model(logits=False, input_ph=None, img_rows=28, img_cols=28,
     model = Sequential()
 
     # Define the layers successively (convolution layers are version dependent)
-    if keras.backend.image_dim_ordering() == 'th':
+    if keras.backend.image_data_format() == 'th':
         input_shape = (channels, img_rows, img_cols)
     else:
         input_shape = (img_rows, img_cols, channels)
