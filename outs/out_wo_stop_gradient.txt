@@ -1,0 +1,67 @@
+/home/riccardo/anaconda3/bin/python /home/riccardo/Documents/Projects/certifiable-distributional-robustness/train_mnist_models.py
+/home/riccardo/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+2019-04-03 11:05:35.358620: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2019-04-03 11:05:35.536917: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1405] Found device 0 with properties:
+name: GeForce GTX 1080 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:65:00.0
+totalMemory: 10.91GiB freeMemory: 10.75GiB
+2019-04-03 11:05:35.536941: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1484] Adding visible gpu devices: 0
+2019-04-03 11:05:35.811063: I tensorflow/core/common_runtime/gpu/gpu_device.cc:965] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-04-03 11:05:35.811096: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971]      0
+2019-04-03 11:05:35.811102: I tensorflow/core/common_runtime/gpu/gpu_device.cc:984] 0:   N
+2019-04-03 11:05:35.811354: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1097] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10398 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1080 Ti, pci bus id: 0000:65:00.0, compute capability: 6.1)
+X_train shape: (60000, 28, 28, 1)
+60000 train samples
+10000 test samples
+Repeating the process, using Wasserstein adversarial training
+WARNING:tensorflow:From /home/riccardo/Documents/Projects/certifiable-distributional-robustness/attacks_tf.py:53: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From /home/riccardo/Documents/Projects/certifiable-distributional-robustness/utils_tf.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See @{tf.nn.softmax_cross_entropy_with_logits_v2}.
+
+Epoch 0
+	Epoch took 34.875941038131714 seconds
+Test accuracy on legitimate test examples: 0.9622
+Test accuracy on Wasserstein examples: 0.8436
+
+Epoch 1
+	Epoch took 32.14517092704773 seconds
+Test accuracy on legitimate test examples: 0.9673
+Test accuracy on Wasserstein examples: 0.8564
+
+Epoch 2
+	Epoch took 33.306299924850464 seconds
+Test accuracy on legitimate test examples: 0.9721
+Test accuracy on Wasserstein examples: 0.8730
+
+Epoch 3
+	Epoch took 33.52291417121887 seconds
+Test accuracy on legitimate test examples: 0.9730
+Test accuracy on Wasserstein examples: 0.8647
+
+Epoch 4
+	Epoch took 33.62214994430542 seconds
+Test accuracy on legitimate test examples: 0.1028
+Test accuracy on Wasserstein examples: 0.1028
+
+Epoch 5
+	Epoch took 33.25769019126892 seconds
+Test accuracy on legitimate test examples: 0.1135
+Test accuracy on Wasserstein examples: 0.1135
+
+Epoch 6
+	Epoch took 33.62491822242737 seconds
+Test accuracy on legitimate test examples: 0.0924
+Test accuracy on Wasserstein examples: 0.1132
+
+Epoch 7
+	Epoch took 33.78252816200256 seconds
+Test accuracy on legitimate test examples: 0.0807
+Test accuracy on Wasserstein examples: 0.1309

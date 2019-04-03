@@ -1,0 +1,285 @@
+/home/riccardo/anaconda3/bin/python /home/riccardo/Documents/Projects/certifiable-distributional-robustness/train_mnist_models.py
+/home/riccardo/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+2019-04-03 11:24:52.216388: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2019-04-03 11:24:52.412381: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1405] Found device 0 with properties:
+name: GeForce GTX 1080 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:65:00.0
+totalMemory: 10.91GiB freeMemory: 10.75GiB
+2019-04-03 11:24:52.412406: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1484] Adding visible gpu devices: 0
+2019-04-03 11:24:52.679383: I tensorflow/core/common_runtime/gpu/gpu_device.cc:965] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-04-03 11:24:52.679412: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971]      0
+2019-04-03 11:24:52.679418: I tensorflow/core/common_runtime/gpu/gpu_device.cc:984] 0:   N
+2019-04-03 11:24:52.679663: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1097] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10398 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1080 Ti, pci bus id: 0000:65:00.0, compute capability: 6.1)
+X_train shape: (60000, 28, 28, 1)
+60000 train samples
+10000 test samples
+wrm params {'eps': 1, 'ord': 2, 'y': <tf.Tensor 'Placeholder_1:0' shape=(?, 10) dtype=float32>, 'steps': 15, 'stop_gradient': True}
+Train on clean data
+WARNING:tensorflow:From /home/riccardo/Documents/Projects/certifiable-distributional-robustness/attacks_tf.py:53: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From /home/riccardo/Documents/Projects/certifiable-distributional-robustness/utils_tf.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See @{tf.nn.softmax_cross_entropy_with_logits_v2}.
+
+Epoch 0
+	Epoch took 2.040193796157837 seconds
+Test accuracy on legitimate test examples: 0.9694
+Test accuracy on Wasserstein examples: 0.3684
+
+Epoch 1
+	Epoch took 1.1586840152740479 seconds
+Test accuracy on legitimate test examples: 0.9805
+Test accuracy on Wasserstein examples: 0.3140
+
+Epoch 2
+	Epoch took 1.1504297256469727 seconds
+Test accuracy on legitimate test examples: 0.9842
+Test accuracy on Wasserstein examples: 0.2800
+
+Epoch 3
+	Epoch took 1.1495213508605957 seconds
+Test accuracy on legitimate test examples: 0.9867
+Test accuracy on Wasserstein examples: 0.2636
+
+Epoch 4
+	Epoch took 1.1517436504364014 seconds
+Test accuracy on legitimate test examples: 0.9872
+Test accuracy on Wasserstein examples: 0.2486
+
+Epoch 5
+	Epoch took 1.1497268676757812 seconds
+Test accuracy on legitimate test examples: 0.9890
+Test accuracy on Wasserstein examples: 0.2309
+
+Epoch 6
+	Epoch took 1.1478557586669922 seconds
+Test accuracy on legitimate test examples: 0.9889
+Test accuracy on Wasserstein examples: 0.2150
+
+Epoch 7
+	Epoch took 1.155935287475586 seconds
+Test accuracy on legitimate test examples: 0.9893
+Test accuracy on Wasserstein examples: 0.2070
+
+Epoch 8
+	Epoch took 1.1647462844848633 seconds
+Test accuracy on legitimate test examples: 0.9898
+Test accuracy on Wasserstein examples: 0.2034
+
+Epoch 9
+	Epoch took 1.148299217224121 seconds
+Test accuracy on legitimate test examples: 0.9896
+Test accuracy on Wasserstein examples: 0.2009
+
+Epoch 10
+	Epoch took 1.1648921966552734 seconds
+Test accuracy on legitimate test examples: 0.9898
+Test accuracy on Wasserstein examples: 0.1997
+
+Epoch 11
+	Epoch took 1.1685419082641602 seconds
+Test accuracy on legitimate test examples: 0.9903
+Test accuracy on Wasserstein examples: 0.1996
+
+Epoch 12
+	Epoch took 1.1699981689453125 seconds
+Test accuracy on legitimate test examples: 0.9908
+Test accuracy on Wasserstein examples: 0.1973
+
+Epoch 13
+	Epoch took 1.1689777374267578 seconds
+Test accuracy on legitimate test examples: 0.9909
+Test accuracy on Wasserstein examples: 0.1983
+
+Epoch 14
+	Epoch took 1.1838138103485107 seconds
+Test accuracy on legitimate test examples: 0.9908
+Test accuracy on Wasserstein examples: 0.2010
+
+Epoch 15
+	Epoch took 1.1648998260498047 seconds
+Test accuracy on legitimate test examples: 0.9904
+Test accuracy on Wasserstein examples: 0.2035
+
+Epoch 16
+	Epoch took 1.1732807159423828 seconds
+Test accuracy on legitimate test examples: 0.9902
+Test accuracy on Wasserstein examples: 0.2051
+
+Epoch 17
+	Epoch took 1.1734461784362793 seconds
+Test accuracy on legitimate test examples: 0.9903
+Test accuracy on Wasserstein examples: 0.2090
+
+Epoch 18
+	Epoch took 1.1821441650390625 seconds
+Test accuracy on legitimate test examples: 0.9903
+Test accuracy on Wasserstein examples: 0.2135
+
+Epoch 19
+	Epoch took 1.176565170288086 seconds
+Test accuracy on legitimate test examples: 0.9902
+Test accuracy on Wasserstein examples: 0.2204
+
+Epoch 20
+	Epoch took 1.1710119247436523 seconds
+Test accuracy on legitimate test examples: 0.9898
+Test accuracy on Wasserstein examples: 0.2143
+
+Epoch 21
+	Epoch took 1.1683223247528076 seconds
+Test accuracy on legitimate test examples: 0.9898
+Test accuracy on Wasserstein examples: 0.2436
+
+Epoch 22
+	Epoch took 1.1608054637908936 seconds
+Test accuracy on legitimate test examples: 0.9901
+Test accuracy on Wasserstein examples: 0.2637
+
+Epoch 23
+	Epoch took 1.1773765087127686 seconds
+Test accuracy on legitimate test examples: 0.9891
+Test accuracy on Wasserstein examples: 0.2664
+
+Epoch 24
+	Epoch took 1.1733949184417725 seconds
+Test accuracy on legitimate test examples: 0.9900
+Test accuracy on Wasserstein examples: 0.2554
+
+Completed model training.
+
+Repeating the process, using Wasserstein adversarial training
+Epoch 0
+	Epoch took 14.145787239074707 seconds
+Test accuracy on legitimate test examples: 0.9670
+Test accuracy on Wasserstein examples: 0.8324
+
+Epoch 1
+	Epoch took 13.940452337265015 seconds
+Test accuracy on legitimate test examples: 0.9760
+Test accuracy on Wasserstein examples: 0.8619
+
+Epoch 2
+	Epoch took 14.012954950332642 seconds
+Test accuracy on legitimate test examples: 0.9819
+Test accuracy on Wasserstein examples: 0.8774
+
+Epoch 3
+	Epoch took 14.031473636627197 seconds
+Test accuracy on legitimate test examples: 0.9844
+Test accuracy on Wasserstein examples: 0.8859
+
+Epoch 4
+	Epoch took 14.05100703239441 seconds
+Test accuracy on legitimate test examples: 0.9864
+Test accuracy on Wasserstein examples: 0.8947
+
+Epoch 5
+	Epoch took 14.140428066253662 seconds
+Test accuracy on legitimate test examples: 0.9882
+Test accuracy on Wasserstein examples: 0.8997
+
+Epoch 6
+	Epoch took 14.217244148254395 seconds
+Test accuracy on legitimate test examples: 0.9892
+Test accuracy on Wasserstein examples: 0.9027
+
+Epoch 7
+	Epoch took 14.235862016677856 seconds
+Test accuracy on legitimate test examples: 0.9893
+Test accuracy on Wasserstein examples: 0.9060
+
+Epoch 8
+	Epoch took 14.14970350265503 seconds
+Test accuracy on legitimate test examples: 0.9897
+Test accuracy on Wasserstein examples: 0.9097
+
+Epoch 9
+	Epoch took 14.322135925292969 seconds
+Test accuracy on legitimate test examples: 0.9901
+Test accuracy on Wasserstein examples: 0.9113
+
+Epoch 10
+	Epoch took 14.323807716369629 seconds
+Test accuracy on legitimate test examples: 0.9900
+Test accuracy on Wasserstein examples: 0.9120
+
+Epoch 11
+	Epoch took 14.242789030075073 seconds
+Test accuracy on legitimate test examples: 0.9898
+Test accuracy on Wasserstein examples: 0.9119
+
+Epoch 12
+	Epoch took 14.276661396026611 seconds
+Test accuracy on legitimate test examples: 0.9900
+Test accuracy on Wasserstein examples: 0.9112
+
+Epoch 13
+	Epoch took 14.331762075424194 seconds
+Test accuracy on legitimate test examples: 0.9901
+Test accuracy on Wasserstein examples: 0.9120
+
+Epoch 14
+	Epoch took 14.33737301826477 seconds
+Test accuracy on legitimate test examples: 0.9906
+Test accuracy on Wasserstein examples: 0.9129
+
+Epoch 15
+	Epoch took 14.272634983062744 seconds
+Test accuracy on legitimate test examples: 0.9904
+Test accuracy on Wasserstein examples: 0.9109
+
+Epoch 16
+	Epoch took 14.37318205833435 seconds
+Test accuracy on legitimate test examples: 0.9910
+Test accuracy on Wasserstein examples: 0.9099
+
+Epoch 17
+	Epoch took 14.312132596969604 seconds
+Test accuracy on legitimate test examples: 0.9910
+Test accuracy on Wasserstein examples: 0.9114
+
+Epoch 18
+	Epoch took 14.370798110961914 seconds
+Test accuracy on legitimate test examples: 0.9907
+Test accuracy on Wasserstein examples: 0.9091
+
+Epoch 19
+	Epoch took 14.719346284866333 seconds
+Test accuracy on legitimate test examples: 0.9905
+Test accuracy on Wasserstein examples: 0.9080
+
+Epoch 20
+	Epoch took 14.678117990493774 seconds
+Test accuracy on legitimate test examples: 0.9910
+Test accuracy on Wasserstein examples: 0.9106
+
+Epoch 21
+	Epoch took 14.685109615325928 seconds
+Test accuracy on legitimate test examples: 0.9901
+Test accuracy on Wasserstein examples: 0.9060
+
+Epoch 22
+	Epoch took 14.703644037246704 seconds
+Test accuracy on legitimate test examples: 0.9909
+Test accuracy on Wasserstein examples: 0.9076
+
+Epoch 23
+	Epoch took 14.69306993484497 seconds
+Test accuracy on legitimate test examples: 0.9901
+Test accuracy on Wasserstein examples: 0.9077
+
+Epoch 24
+	Epoch took 14.560161590576172 seconds
+Test accuracy on legitimate test examples: 0.9905
+Test accuracy on Wasserstein examples: 0.9077
+
+Completed model training.
+
+Process finished with exit code 0

@@ -34,6 +34,9 @@ flags.DEFINE_float('learning_rate', 0.001, 'Learning rate for training')
 flags.DEFINE_string('train_dir', '.', 'Training directory')
 flags.DEFINE_string('filename_erm', 'erm.h5', 'Training directory')
 flags.DEFINE_string('filename_wrm', 'wrm.h5', 'Training directory')
+flags.DEFINE_bool('skip_clean_train', False, 'if True, skip the training on clean data')
+flags.DEFINE_bool('stop_gradient', True, 'if True, dont consider the derivative of the adversarial examples')
+
 
 train_params = {
     'nb_epochs': FLAGS.nb_epochs,
@@ -64,30 +67,33 @@ def main(argv=None):
     # Define input TF placeholder
     x = tf.placeholder(tf.float32, shape=(None, 28, 28, 1))
     y = tf.placeholder(tf.float32, shape=(None, 10))
+    wrm_params = {'eps': 1.3, 'ord': 2, 'y': y, 'steps': 15, 'stop_gradient': FLAGS.stop_gradient}
+    print('wrm params', wrm_params)
 
-    # Define TF model graph
-    model = cnn_model(activation='elu')
-    predictions = model(x)
-    wrm = WassersteinRobustMethod(model, sess=sess)
-    wrm_params = {'eps': 1.3, 'ord': 2, 'y':y, 'steps': 15}
-    predictions_adv_wrm = model(wrm.generate(x, **wrm_params))
+    if not FLAGS.skip_clean_train:
+        print("Train on clean data")
+        # Define TF model graph
+        model = cnn_model(activation='elu')
+        predictions = model(x)
+        wrm = WassersteinRobustMethod(model, sess=sess)
+        predictions_adv_wrm = model(wrm.generate(x, **wrm_params))
 
-    def evaluate():
-        # Evaluate the accuracy of the MNIST model on legitimate test examples
-        accuracy = model_eval(sess, x, y, predictions, X_test, Y_test, args=eval_params)
-        print('Test accuracy on legitimate test examples: %0.4f' % accuracy)
+        def evaluate():
+            # Evaluate the accuracy of the MNIST model on legitimate test examples
+            accuracy = model_eval(sess, x, y, predictions, X_test, Y_test, args=eval_params)
+            print('Test accuracy on legitimate test examples: %0.4f' % accuracy)
 
-        # Accuracy of the model on Wasserstein adversarial examples
-        accuracy_adv_wass = model_eval(sess, x, y, predictions_adv_wrm, X_test, \
-                                       Y_test, args=eval_params)
-        print('Test accuracy on Wasserstein examples: %0.4f\n' % accuracy_adv_wass)
+            # Accuracy of the model on Wasserstein adversarial examples
+            accuracy_adv_wass = model_eval(sess, x, y, predictions_adv_wrm, X_test, \
+                                           Y_test, args=eval_params)
+            print('Test accuracy on Wasserstein examples: %0.4f\n' % accuracy_adv_wass)
 
-    # Train the model
-    model_train(sess, x, y, predictions, X_train, Y_train, evaluate=evaluate, \
-                args=train_params, save=False)
-    model.save(FLAGS.train_dir + '/' + FLAGS.filename_erm)
+        # Train the model
+        model_train(sess, x, y, predictions, X_train, Y_train, evaluate=evaluate, \
+                    args=train_params, save=False)
+        model.save(FLAGS.train_dir + '/' + FLAGS.filename_erm)
 
-    print('')
+        print('')
     print("Repeating the process, using Wasserstein adversarial training")
     # Redefine TF model graph
     model_adv = cnn_model(activation='elu')

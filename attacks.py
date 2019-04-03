@@ -83,9 +83,9 @@ class WassersteinRobustMethod(Attack):
         # Parse and save attack-specific parameters
         assert self.parse_params(**kwargs)
         return wrm(x, self.model(x), y=self.y, eps=self.eps, ord=self.ord, \
-                   model=self.model, steps=self.steps)
+                   model=self.model, steps=self.steps, stop_gradient=self.stop_gradient)
 
-    def parse_params(self, eps=0.3, ord=2, y=None, steps=15,**kwargs):
+    def parse_params(self, eps=0.3, ord=2, y=None, steps=15, stop_gradient=True, **kwargs):
         """
         Take in a dictionary of parameters and applies attack-specific checks
         before saving them as attributes.
@@ -109,6 +109,7 @@ class WassersteinRobustMethod(Attack):
         self.ord = ord
         self.y = y
         self.steps = steps
+        self.stop_gradient = stop_gradient
                    
         # Check if order of the norm is acceptable given current implementation
         if self.ord not in [int(2)]:

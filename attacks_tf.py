@@ -22,7 +22,8 @@ import utils_tf
 from tensorflow.python.platform import flags
 FLAGS = flags.FLAGS
 
-def wrm(x, preds, y=None, eps=0.3, ord=2, model=None, steps=15):
+
+def wrm(x, preds, y=None, eps=0.3, ord=2, model=None, steps=15, stop_gradient=True):
   
     """
         TensorFlow implementation of the Wasserstein distributionally
@@ -55,13 +56,17 @@ def wrm(x, preds, y=None, eps=0.3, ord=2, model=None, steps=15):
     loss = utils_tf.model_loss(y, preds, mean=False)
 
     grad, = tf.gradients(eps*loss, x)
-    x_adv = tf.stop_gradient(x+grad)
-    x = tf.stop_gradient(x)
-    
+    x_adv = x + grad
+    if stop_gradient:
+        x_adv = tf.stop_gradient(x_adv)
+        x = tf.stop_gradient(x)
+
     for t in xrange(steps):
         loss = utils_tf.model_loss(y, model(x_adv), mean=False)
         grad, = tf.gradients(eps*loss, x_adv)
         grad2, = tf.gradients(tf.nn.l2_loss(x_adv-x), x_adv)
         grad = grad - grad2
-        x_adv = tf.stop_gradient(x_adv+1./np.sqrt(t+2)*grad)
+        x_adv = x_adv+1./np.sqrt(t+2)*grad
+        if stop_gradient:
+            x_adv = tf.stop_gradient(x_adv)
     return x_adv
