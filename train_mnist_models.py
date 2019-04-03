@@ -34,8 +34,8 @@ flags.DEFINE_float('learning_rate', 0.001, 'Learning rate for training')
 flags.DEFINE_string('train_dir', '.', 'Training directory')
 flags.DEFINE_string('filename_erm', 'erm.h5', 'Training directory')
 flags.DEFINE_string('filename_wrm', 'wrm.h5', 'Training directory')
-flags.DEFINE_bool('skip_clean_train', False, 'if True, skip the training on clean data')
-flags.DEFINE_bool('stop_gradient', True, 'if True, dont consider the derivative of the adversarial examples')
+flags.DEFINE_bool('skip_clean_train', True, 'if True, skip the training on clean data')
+flags.DEFINE_bool('stop_gradient', False, 'if True, dont consider the derivative of the adversarial examples')
 
 
 train_params = {
@@ -115,6 +115,7 @@ def main(argv=None):
                 predictions_adv=predictions_adv_adv_wrm, evaluate=evaluate_adv, \
                 args=train_params, save=False)
     model_adv.save(FLAGS.train_dir + '/' + FLAGS.filename_wrm)
+
 
 if __name__ == '__main__':
     app.run()
